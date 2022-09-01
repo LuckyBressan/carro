@@ -43,11 +43,10 @@
             <div class="mb-3">
                 <input type="button" value="Salvar" id="salvar" class="btn btn-success" onclick="fCadastraViagem(modelo.value,placa.value,motorista.value,origem.value,destino.value,km.value,
                                                                                                                 litro.value,valor.value)">&nbsp;&nbsp;
-                <input type="button" value="Salvar Resultado" id="salvar_resultado" class="btn btn-success" onclick="fCadastraResultado(vGastoKM.value, vGastoTotal.value)">&nbsp;&nbsp;
-                <input type="button" value="Listar" id="lista" class="btn btn-primary">&nbsp;&nbsp;
+                <input type="button" value="Listar" id="lista" class="btn btn-primary" onclick="fListarViagens()">&nbsp;&nbsp;
                 <input type="reset" value="Limpar" id="limpa" class="btn btn-warning">&nbsp;&nbsp;
             </div>
-            <div class="alert alert-warning">
+            <div class="border border-warning">
                 <p id="dMostra"></p>
             </div>
         </form>
