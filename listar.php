@@ -31,7 +31,7 @@
                 echo "<td>".$linha['valorCombustivel']."</td>";
                 echo "<td>R$ ".$linha['gastoPorKm']."</td>";
                 echo "<td>R$ ".$linha['gastoTotal']."</td>";
-                printf("<td><input type='submit' value='Deletar' class='btn btn-danger' onclick='fExcluirViagem(".$linha['id'].")'</td>");
+                echo "<td><input type='submit' value='Deletar' class='btn btn-danger' onclick='fExcluirViagem(".$linha['id'].")'</td>";
             echo '</tr>';
         }
         
