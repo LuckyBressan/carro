@@ -1,5 +1,6 @@
 <?php 
     include "conn/conexao.php";
+    
 
     $sql = "SELECT * from viagem";
     $lista = $conn->prepare($sql);
@@ -31,10 +32,10 @@
                 echo "<td>".$linha['valorCombustivel']."</td>";
                 echo "<td>R$ ".$linha['gastoPorKm']."</td>";
                 echo "<td>R$ ".$linha['gastoTotal']."</td>";
-                echo "<td><input type='submit' value='Deletar' class='btn btn-danger' onclick='fExcluirViagem(".$linha['id'].")'</td>";
+                echo "<td><input type='submit' value='Deletar' id='deletar' class='btn btn-danger' onclick='fExcluirViagem(".$linha['id'].")'</td>";
             echo '</tr>';
         }
-        
+   
 ?>
 
 <!-- <table class="table table-stripped table-border">

@@ -46,45 +46,58 @@ function fValida() {
     return(valido);
 }
 
-function fCadastraViagem(modelo, placa, motorista, origem, destino, km, litro, valor) {
+$("#salvar").click(function(){
     if(!fValida()) {
-    document.getElementById('dMostra').innerHTML = "Erro, não válido";
-    return;
+        document.getElementById('dMostra').innerHTML = "Erro, não válido";
+        return;
     } else {
-    var vLitro = parseFloat(document.getElementById('litro').value);
-    var vValor = parseFloat(document.getElementById('valor').value);
-    var vKm = parseFloat(document.getElementById('km').value);
+        var vLitro = parseFloat(document.getElementById('litro').value);
+        var vValor = parseFloat(document.getElementById('valor').value);
+        var vKm = parseFloat(document.getElementById('km').value);
 
-    var vTotal = vLitro*vValor;
-    var vGasto = vTotal/vKm;
+        var vTotal = vLitro*vValor;
+        var vGasto = vTotal/vKm;
+        document.getElementById('vGastoKM').value = vGasto;
+        document.getElementById('vGastoTotal').value = vTotal;
 
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET","salvar.php?modelo="+modelo+"&placa="+placa+"&motorista="+motorista+"&origem="+origem+"&destino="+destino+
-    "&km="+km+"&litro="+litro+"&valor="+valor+"&gasto_litro="+vGasto+"&gasto_total="+vTotal,true);
-    xmlhttp.send();
+        $.post("salvar.php", 
+                {modelo:$('#modelo').val(),
+                placa:$('#placa').val(),
+                motorista:$('#motorista').val(),
+                origem:$('#origem').val(),
+                destino:$('#destino').val(),
+                kilometragem:$('#km').val(),
+                litro_combustivel:$('#litro').val(),
+                valor_combustivel:$('#valor').val(),
+                gasto_por_km:$('#vGastoKM').val(),
+                gasto_total:$('#vGastoKM').val(),
+                salvar: $('#salvar').val()
+                }, function(result){
+                    //$("span").html(result);
+                    document.getElementById('dMostra').innerHTML = result;
+                    document.getElementById('dMostra').innerHTML = "Salvo com Sucesso!!!";
+        });
+
+        
+
 
     
-
-    document.getElementById('vGastoKM').value = vGasto;
-    document.getElementById('vGastoTotal').value = vTotal;
-
-    document.getElementById('dMostra').innerHTML = "Salvo com Sucesso!!!";
     }
-}
+});
+$('#lista').click(function (){
+    $.post("listar.php",function(result){
+        document.getElementById('dMostra').innerHTML = result;
+    })
+})
 
-function fListarViagens() {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        document.getElementById('dMostra').innerHTML = this.responseText;
-    }
-    }
-    xmlhttp.open("GET","listar.php",true);
-    xmlhttp.send();
-}
 
 function fExcluirViagem(id) {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open('GET',"excluir.php?id="+id,true)
-    xmlhttp.send();
+    let acao = "excluir.php?id="+id;
+
+    $.get(acao, function(dados,status){
+        if(status=="success") {
+            alert("Deletado com Sucesso");
+            location.reload();
+        }
+    })
 }

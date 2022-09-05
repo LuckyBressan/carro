@@ -1,5 +1,5 @@
 <h1>Cadastrar Viagem</h1>
-        <form method="post" id="c_viagem">
+        <form id="c_viagem">
             <div class="mb-3">
                 <label for="modelo" class="form-label">Modelo:</label>
                 <input type="text" class="form-control" id="modelo" placeholder="Informe o modelo do carro..." required>
@@ -41,12 +41,11 @@
                 <input type="text" class="form-control" id="vGastoTotal" readonly>
             </div>
             <div class="mb-3">
-                <input type="button" value="Salvar" id="salvar" class="btn btn-success" onclick="fCadastraViagem(modelo.value,placa.value,motorista.value,origem.value,destino.value,km.value,
-                                                                                                                litro.value,valor.value)">&nbsp;&nbsp;
-                <input type="button" value="Listar" id="lista" class="btn btn-primary" onclick="fListarViagens()">&nbsp;&nbsp;
+                <input type="button" value="Salvar" id="salvar" class="btn btn-success">&nbsp;&nbsp;
+                <input type="button" value="Listar" id="lista" class="btn btn-primary">&nbsp;&nbsp;
                 <input type="reset" value="Limpar" id="limpa" class="btn btn-warning">&nbsp;&nbsp;
             </div>
-            <div class="border border-warning">
+            <div class="border border-warning text-center">
                 <p id="dMostra"></p>
             </div>
         </form>
